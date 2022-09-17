@@ -1,0 +1,22 @@
+.messages_blok {
+    flex: 1;
+    padding: 0 20px;
+    overflow-y: scroll;
+}
+  .messages_blok::-webkit-scrollbar {
+    cursor: pointer;
+    height: 12px;
+    width: 5px;
+  }
+  .messages_blok::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .messages_blok::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    border: 3px solid rgb(0, 174, 255);
+  }
+
+  .messages_blok::-webkit-scrollbar:hover {
+    height: 12px;
+    width: 10px;
+  }
