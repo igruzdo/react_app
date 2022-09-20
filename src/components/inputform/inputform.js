@@ -1,6 +1,9 @@
 import { useState } from 'react'
 import './inputform.css'
 
+import { Box, Button, TextField} from '@mui/material'
+import MessageIcon from '@mui/icons-material/Message';
+
 const InputForm = ({onSendMessage}) => {
 
     const [msgState, setMsgState] = useState({
@@ -14,36 +17,51 @@ const InputForm = ({onSendMessage}) => {
     }
 
     const onValueChange = (e) => {
+        console.log(e)
         setMsgState({
             ...msgState,
             [e.target.name]: e.target.value
         })
     }
 
-
     return (
-        <div className="app-add-form">
-            <h3 className='input_header'>Enter your message</h3>
-            <form
-                className="add-form">
-                <input type="text"
-                    className="form-control_name"
-                    placeholder="Your name"
+        <Box
+            sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                height: 300,
+                padding: "0 20px",
+                backgroundColor: 'rgb(220, 234, 243)',
+            }}
+        >
+            <h4>Message form</h4>
+                <TextField
+                    id="outlined-name"
+                    label="Name"
                     name="name"
+                    size="small"
+                    autoFocus={true}
+                    fullWidth={true}
+                    required={true}
                     value={msgState.name}
-                    onChange={(e) => onValueChange(e)}
-                    />
-                <textarea
-                    className="form-control_msg"
-                    placeholder="Message"
+                    helperText="Please enter your name"
+                    onChange={onValueChange}
+                />
+                <TextField
+                    id="outlined-message"
+                    label="Message"
                     name="message"
-                    value={msgState.message}
-                    onChange={(e) => onValueChange(e)}/>
-                <button type="submit"
-                    className="btn btn-outline-light"
-                    onClick={sendMessage}>Send</button>
-            </form>
-        </div>
+                    size="small"
+                    multiline={true}
+                    rows={3}
+                    required={true}
+                    margin="normal"
+                    fullWidth={true}
+                    helperText="Enter your message"
+                    onChange={onValueChange}
+                />
+            <Button variant="contained" startIcon={<MessageIcon/>} onClick={sendMessage}>Send message</Button>
+        </Box>
     )
 }
 

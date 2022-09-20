@@ -15,12 +15,14 @@ function App() {
     {name: 'Sarah', message: 'Bonjour!', key: 4, date: new Date().toLocaleString(), isRobot: false},
   ])
 
+  
+
   let msgAuthors = [...new Set([...msgListState.map(item => item.name)])]
 
   useEffect(()=> {
       (function (name) {
         setTimeout(() => {
-          if(msgListState[msgListState.length - 1].name !== "Robot"){
+          if(name !== "Robot"){
             setMsgListState((state) => {
               return [
                 ...state,
