@@ -8,7 +8,7 @@ const ChatsList = ({chatsList}) => {
 
     const chats = chatsList.map(item => {
         return (
-            <ChatsListItem listItem={item} key={item.key}/>
+            <ChatsListItem listItem={item} key={item.id}/>
         )
     })
 

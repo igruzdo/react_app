@@ -19,10 +19,10 @@ function App() {
   ])
 
   const [chatsListState] = useState([
-    {name: 'Students', key: 1},
-    {name: 'News', key: 2},
-    {name: 'Investments', key: 3},
-    {name: 'Тeighbors', key: 4},
+    {name: 'Students', id: 1},
+    {name: 'News', id: 2},
+    {name: 'Investments', id: 3},
+    {name: 'Тeighbors', id: 4},
   ])
 
   const outerTheme = createTheme({
