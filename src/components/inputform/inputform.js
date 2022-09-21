@@ -13,6 +13,7 @@ const InputForm = ({onSendMessage}) => {
 
     const sendMessage = (e) => {
         e.preventDefault();
+        if(msgState.name === '' && msgState.message === '') return
         onSendMessage(msgState)
     }
 
@@ -27,11 +28,12 @@ const InputForm = ({onSendMessage}) => {
     return (
         <Box
             sx={{
+                borderTop: '1px solid black',
                 display: 'flex',
                 flexDirection: 'column',
                 height: 300,
                 padding: "0 20px",
-                backgroundColor: 'rgb(220, 234, 243)',
+                backgroundColor: '#e7e7e7',
             }}
         >
             <h4>Message form</h4>
