@@ -18,7 +18,6 @@ const InputForm = ({onSendMessage}) => {
     }
 
     const onValueChange = (e) => {
-        console.log(e)
         setMsgState({
             ...msgState,
             [e.target.name]: e.target.value
