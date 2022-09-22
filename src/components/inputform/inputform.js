@@ -41,9 +41,9 @@ const InputForm = ({onSendMessage}) => {
                     label="Name"
                     name="name"
                     size="small"
-                    autoFocus={true}
-                    fullWidth={true}
-                    required={true}
+                    autoFocus
+                    fullWidth
+                    required
                     value={msgState.name}
                     helperText="Please enter your name"
                     onChange={onValueChange}
@@ -53,11 +53,11 @@ const InputForm = ({onSendMessage}) => {
                     label="Message"
                     name="message"
                     size="small"
-                    multiline={true}
+                    multiline
                     rows={3}
-                    required={true}
+                    required
                     margin="normal"
-                    fullWidth={true}
+                    fullWidth
                     helperText="Enter your message"
                     onChange={onValueChange}
                 />
