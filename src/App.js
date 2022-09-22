@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './App.css';
 import './components/message/message'
 import MessageList from './components/msg_list/msg_list';
 import HeaderMessager from './components/header_messager/header_messager';
 import InputForm from './components/inputform/inputform';
+import ChatsList from './components/chats_list/chats_list';
+import { orange } from '@mui/material/colors';
 
 
 function App() {
@@ -15,12 +18,27 @@ function App() {
     {name: 'Sarah', message: 'Bonjour!', key: 4, date: new Date().toLocaleString(), isRobot: false},
   ])
 
+  const [chatsListState] = useState([
+    {name: 'Students', id: 1},
+    {name: 'News', id: 2},
+    {name: 'Investments', id: 3},
+    {name: 'Тeighbors', id: 4},
+  ])
+
+  const outerTheme = createTheme({
+    palette: {
+      primary: {
+        main: orange[500],
+      },
+    },
+  });  
+
   let msgAuthors = [...new Set([...msgListState.map(item => item.name)])]
 
   useEffect(()=> {
       (function (name) {
         setTimeout(() => {
-          if(msgListState[msgListState.length - 1].name !== "Robot"){
+          if(name !== "Robot"){
             setMsgListState((state) => {
               return [
                 ...state,
@@ -41,13 +59,18 @@ function App() {
     })
   }
   return (
-    <div className='container'>
-      <div className='messager'>
-        <HeaderMessager authors={msgAuthors} chatName="Students"/>
-        <MessageList msgList={msgListState}/>
-        <InputForm onSendMessage={(message) => onchangeHandler(message)}/>
+    <ThemeProvider theme={outerTheme}>
+      <div className='container'>
+        <div className="messeger">
+          <ChatsList chatsList={chatsListState}/>
+          <div className='messager_main'>
+            <HeaderMessager authors={msgAuthors} chatName="Students"/>
+            <MessageList msgList={msgListState}/>
+            <InputForm onSendMessage={(message) => onchangeHandler(message)}/>
+          </div>
+        </div>
       </div>
-    </div>
+    </ThemeProvider>
   );
 }
 

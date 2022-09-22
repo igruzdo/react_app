@@ -1,11 +1,11 @@
-.messager {
+.messager_main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 550px;
     height: 100vh;
-    border: solid black 1px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+   
+
 }
 
 .container {
@@ -13,3 +13,7 @@
     justify-content: center;
 }
 
+.messeger {
+    display: flex;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

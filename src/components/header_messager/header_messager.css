@@ -1,7 +1,7 @@
 .header {
     display: flex;
     justify-content: space-between;
-    background-color: rgb(182, 199, 236);
+    background-color: rgb(125, 202, 238);
     padding: 0 20px;
 }
 
@@ -11,6 +11,6 @@
 }
 
 .authors_list {
-    color: rgb(43, 104, 196);
+    color: rgb(231, 231, 231);
     font-weight: 600;
 }
