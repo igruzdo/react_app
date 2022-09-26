@@ -3,6 +3,7 @@
     justify-content: space-between;
     background-color: rgb(125, 202, 238);
     padding: 0 20px;
+    position: relative;
 }
 
 .chat-name {

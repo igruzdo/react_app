@@ -1,76 +1,46 @@
-import { useEffect, useState } from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './App.css';
 import './components/message/message'
-import MessageList from './components/msg_list/msg_list';
-import HeaderMessager from './components/header_messager/header_messager';
-import InputForm from './components/inputform/inputform';
+import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import Homepage from './components/homepage/homepage.js';
 import ChatsList from './components/chats_list/chats_list';
-import { orange } from '@mui/material/colors';
+import UserProfile from './components/userProfile/user-profile.js';
+import { useState } from 'react';
+import NotFoundPage from './components/not_found_page/not-found-page';
+import Messager from './components/messager/messager';
 
 
 function App() {
 
-  const [msgListState, setMsgListState] = useState([
-    {name: 'Alex', message: 'Hello everybody!', key: 1, date: new Date().toLocaleString(), isRobot: false},
-    {name: 'Freddy', message: 'Hello, mate!', key: 2, date: new Date().toLocaleString(), isRobot: false},
-    {name: 'Robot', message: 'I am here!', key: 3, date: new Date().toLocaleString(), isRobot: true},
-    {name: 'Sarah', message: 'Bonjour!', key: 4, date: new Date().toLocaleString(), isRobot: false},
-  ])
-
-  const [chatsListState] = useState([
+  const [chatsListState, setChatsListState] = useState([
     {name: 'Students', id: 1},
     {name: 'News', id: 2},
     {name: 'Investments', id: 3},
-    {name: 'Тeighbors', id: 4},
-  ])
+    {name: 'Neighbors', id: 4},
+])
 
-  const outerTheme = createTheme({
-    palette: {
-      primary: {
-        main: orange[500],
-      },
-    },
-  });  
 
-  let msgAuthors = [...new Set([...msgListState.map(item => item.name)])]
+  const onDeleteChat = (id) => {
+    const newState = chatsListState.filter(item => item.id !== id)
+    setChatsListState(newState)
+  }
 
-  useEffect(()=> {
-      (function (name) {
-        setTimeout(() => {
-          if(name !== "Robot"){
-            setMsgListState((state) => {
-              return [
-                ...state,
-                { name: 'Robot', message: `I receved your message, ${name}`, date: new Date().toLocaleString(), isRobot: true, key: state.length + 1}
-              ]
-            })
-          }
-        }, 1500)
-      })(msgListState[msgListState.length - 1].name)
-  }, [msgListState])
-
-  const onchangeHandler = ({name, message}) => {
-    setMsgListState((state) => {
-      return [
-        ...state,
-        { name, message, date: new Date().toLocaleString(), isRobot: false, key: state.length + 1}
-      ]
+  const onAddNewChat = (name) => {
+    const maxId = chatsListState.map(item => item.id).sort((a, b) => b - a)[0]
+    setChatsListState((state) => {
+        return [...state, {name: name, id: maxId + 1}]
     })
   }
+
   return (
-    <ThemeProvider theme={outerTheme}>
-      <div className='container'>
-        <div className="messeger">
-          <ChatsList chatsList={chatsListState}/>
-          <div className='messager_main'>
-            <HeaderMessager authors={msgAuthors} chatName="Students"/>
-            <MessageList msgList={msgListState}/>
-            <InputForm onSendMessage={(message) => onchangeHandler(message)}/>
-          </div>
-        </div>
-      </div>
-    </ThemeProvider>
+    <Router >
+        <Routes>
+          <Route path={'/'} element={<Homepage/>}/>
+          <Route path={'/chats-list'} element={<ChatsList chatsList={chatsListState} onDeleteChat={onDeleteChat} onAddNewChat={onAddNewChat}/>}/>
+          <Route path={'/profile'} element={<UserProfile/>}/>
+          <Route path={'/messager/:id'} element={<Messager chatsList={chatsListState}/>}/>
+          <Route path={'*'} element={<NotFoundPage/>}/>
+        </Routes>
+    </Router>
   );
 }
 

@@ -1,14 +1,18 @@
 import './header_messager.css'
+import { Button } from "@mui/material"
+import HomeIcon from '@mui/icons-material/Home';
+import { NavLink } from 'react-router-dom';
 
 const HeaderMessager = ({authors, chatName}) => {
 
   const authorsHandler = () => {
     let strAuthors = ''
+
     const humanAuthors = authors.filter(item => item !== "Robot")
-    if(humanAuthors){
-      if(humanAuthors?.length <= 3) {
+    if(humanAuthors && humanAuthors.length > 0){
+      if(humanAuthors.length <= 3) {
         humanAuthors?.forEach((item, idx) => {
-          if(idx !== humanAuthors?.length - 1) {
+          if(idx !== humanAuthors.length - 1) {
             strAuthors += `${item}, `
           } else {
             strAuthors +=`${item}.`
@@ -30,6 +34,9 @@ const HeaderMessager = ({authors, chatName}) => {
 
   return (
     <div className='header'>
+      <NavLink to='/'>
+        <Button variant="outlined" startIcon={<HomeIcon/>} className="home-icon-link">Home</Button>
+      </NavLink>
       <h4 className='chat-name'>{chatName}</h4>
       {authorsHandler()}
     </div>
