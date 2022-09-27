@@ -1,0 +1,19 @@
+.messager_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 550px;
+    height: 100vh;
+   
+
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.messeger {
+    display: flex;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}

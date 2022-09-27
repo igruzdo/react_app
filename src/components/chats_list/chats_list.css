@@ -2,3 +2,7 @@
     margin: 17px;
     text-align: center;
 }
+
+.header__container {
+    position: relative;
+}

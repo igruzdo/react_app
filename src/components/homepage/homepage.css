@@ -1,0 +1,15 @@
+.menu-link {
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    font-size: 20px;
+    transition: all .4s;
+}
+
+.menu-link:hover {
+    background-color: aqua;
+    font-size: 25px;
+}
