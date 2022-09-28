@@ -1,11 +1,13 @@
+*{
+    text-decoration: none;
+}
+
 .messager_main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 550px;
-    height: 100vh;
-   
-
+    height: 95vh;
 }
 
 .container {
@@ -16,4 +18,11 @@
 .messeger {
     display: flex;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-theme {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    background-color: #CCC;
 }
