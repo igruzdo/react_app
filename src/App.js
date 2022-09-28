@@ -40,7 +40,6 @@ function App() {
   const handleThemeChange = (event, newAlignment) => {
     setToggleState(newAlignment)
     setTheme(themes[newAlignment])
-    console.log(theme)
   };
 
   return (
