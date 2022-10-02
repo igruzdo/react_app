@@ -9,7 +9,7 @@ const Homepage = () => {
             width: '100%',
             display: 'flex',
             justifyContent: 'center',
-            height: '100vh'
+            height: '95vh'
         }}>
             <Box sx={{ 
                 bgcolor: 'rgb(125, 202, 238)', 
