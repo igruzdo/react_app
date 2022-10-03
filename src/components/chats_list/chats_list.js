@@ -8,16 +8,25 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useContext } from "react";
 import { ThemeContext } from '../../context/theme';
 import { ThemeProvider } from '@mui/material/styles';
+import { useDispatch, useSelector } from 'react-redux';
 
 
 
-const ChatsList = ({chatsList, onAddNewChat, onDeleteChat}) => {
+const ChatsList = () => {
 
     const [formState, setFormState] = useState('')
 
-    const chats = chatsList.map(item => {
+    const chatListRedux = useSelector((state) => state.chats.chats);
+    const dispatch = useDispatch()
+
+    const chats = chatListRedux.map(item => {
         return (
-            <ChatsListItem listItem={item} key={item.id} onDeleteChat={() => onDeleteChat(item.id)}/>
+            <ChatsListItem listItem={item} key={item.id} onDeleteChat={() => dispatch({
+                type: 'deleteChat',
+                payload: {
+                    id: item.id
+                }
+            })}/>
         )
     })
 
@@ -26,6 +35,16 @@ const ChatsList = ({chatsList, onAddNewChat, onDeleteChat}) => {
     const onChangeNameNewChat = (e) => {
         setFormState(e.target.value)
       }
+
+    const onAddChat = () => {
+        dispatch({ 
+            type: 'addChat', 
+            payload: { 
+                name: formState, 
+                id: parseInt(chatListRedux.map(item => item.id).sort((a, b) => b - a)[0] + 1), 
+            }
+        })
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -76,7 +95,7 @@ const ChatsList = ({chatsList, onAddNewChat, onDeleteChat}) => {
                                 onChange={onChangeNameNewChat}
                             />
                         <Button variant="contained"
-                            onClick={() => onAddNewChat(formState)}
+                            onClick={onAddChat}
                             sx={{
                                 marginTop: '20px'
                             }}>
