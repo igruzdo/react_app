@@ -10,6 +10,7 @@ import Messager from './components/messager/messager';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { ThemeContext, themes } from './context/theme';
+import NewYorkTimes from './components/new-york-times/new-york-times';
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
           <Routes>
             <Route path={'/'} element={<Homepage/>}/>
             <Route path={'/chats-list'} element={<ChatsList/>}/>
+            <Route path={'/nytimes'} element={<NewYorkTimes/>}/>
             <Route path={'/profile'} element={<UserProfile/>}/>
             <Route path={'/messager/:id'} element={<Messager/>}/>
             <Route path={'*'} element={<NotFoundPage/>}/>

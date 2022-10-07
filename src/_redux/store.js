@@ -1,8 +1,8 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { messagesReducer } from './reducers/messagesReducer';
 import { chatsListReducer } from './reducers/chatsListReducer';
+import { nytReducer } from "./reducers/nytReducer";
 import ReduxThunk from 'redux-thunk'
-import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 
 const config = {
@@ -34,10 +34,8 @@ const robotAnswer = store => (dispatch, getState) => action => {
 
 const reducer = combineReducers({
     messages: messagesReducer,
-    chats: chatsListReducer
+    chats: chatsListReducer,
+    nytNews: nytReducer
 })
 
-const presistReducer = persistReducer(config, reducer)
-
-export const store = createStore(presistReducer, applyMiddleware(ReduxThunk, robotAnswer));
-export const persistor = persistStore(store)
+export const store = createStore(reducer, applyMiddleware(ReduxThunk, robotAnswer));
