@@ -1,28 +1,15 @@
+import * as chatsListActions from "../actions/actionsTypes/chatListActionsTypes"
+
 const initialState = {
-    chats: [ 
-        {name: 'Students', id: 1},
-        {name: 'News', id: 2},
-        {name: 'Investments', id: 3},
-        {name: 'Neighbors', id: 4},
-    ]
+    chats: []
 }
 
 export const chatsListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'addChat':
+        case chatsListActions.CHANGE_CHATS:
             return {
                 ...state,
-                chats: [
-                    ...state.chats,
-                    {...action.payload}
-                ]
-            }
-        case 'deleteChat':
-            return {
-                ...state,
-                chats: [
-                    ...state.chats.filter(chat => chat.id !== action.payload.id),
-                ]
+                chats: [...action.payload]
             }
         default: 
             return state
