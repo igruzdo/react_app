@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom'
 import { ThemeProvider } from '@mui/material/styles';
 import './messager.css';
@@ -23,29 +23,6 @@ const Messager = () => {
     const chatOptions = chatsRedux.find(item => item.id === +params.id)
 
     const msgAuthors = messageListByChatId.length > 0 ? [...new Set([...messageListByChatId.map(item => item.name)])] : []
-
-    useEffect(()=> {
-        if(messageListByChatId[messageListByChatId.length - 1]?.name) {
-            (function (name) {
-                setTimeout(() => {
-                    if(name !== "Robot") {
-                        dispatch({ 
-                            type: 'addMessage', 
-                            payload: { 
-                                name: 'Robot', 
-                                message: `I receved your message, ${name}`, 
-                                date: new Date().toLocaleString(), 
-                                isRobot: true, 
-                                key: messagesRedux.length + 1, 
-                                chatId: +params.id
-                            }
-                        })
-                    }
-                }, 1500)
-            })(messageListByChatId[messageListByChatId.length - 1].name)
-        }
-    }, [messageListByChatId])
-
     const onchangeHandler = ({name, message}) => {
         dispatch({ 
             type: 'addMessage', 
