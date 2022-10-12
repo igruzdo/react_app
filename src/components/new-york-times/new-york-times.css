@@ -1,0 +1,7 @@
+.nyt-header {
+    position: fixed;
+    overflow: hidden;
+    z-index: 99;
+    width: 530px;
+    background-color: rgb(125, 202, 238);
+}

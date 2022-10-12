@@ -22,6 +22,7 @@ const Homepage = () => {
             }}>
                 <h2>Home page</h2>
                 <NavLink className='menu-link' to='/chats-list' style={({isActive}) => ({color: isActive ? 'red' : 'black'})}>Chats list</NavLink>
+                <NavLink className='menu-link' to='/nytimes' style={({isActive}) => ({color: isActive ? 'red' : 'black'})}>New York Times</NavLink>
                 <NavLink className='menu-link' to='/profile' style={({isActive}) => ({color: isActive ? 'red' : 'black'})}>Profile</NavLink>
             </Box>
         </Box>
