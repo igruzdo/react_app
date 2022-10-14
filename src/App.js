@@ -11,6 +11,7 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { ThemeContext, themes } from './context/theme';
 import NewYorkTimes from './components/new-york-times/new-york-times';
+import AuthPage from './components/auth-page/auth';
 
 
 function App() {
@@ -39,11 +40,12 @@ function App() {
         </div>
         <Router >
           <Routes>
-            <Route path={'/'} element={<Homepage/>}/>
+            <Route path={'/home'} element={<Homepage/>}/>
             <Route path={'/chats-list'} element={<ChatsList/>}/>
             <Route path={'/nytimes'} element={<NewYorkTimes/>}/>
             <Route path={'/profile'} element={<UserProfile/>}/>
             <Route path={'/messager/:id'} element={<Messager/>}/>
+            <Route path={'/'} element={<AuthPage/>}/>
             <Route path={'*'} element={<NotFoundPage/>}/>
           </Routes>
         </Router>

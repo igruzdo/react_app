@@ -4,9 +4,9 @@ import Message from '../message/message.js';
 const MessageList = ({msgList}) => {
 
     const messages = () => {
-        return msgList.map(item => {
+        return msgList?.map(item => {
           return (
-            <Message {...item}/>
+            <Message {...item} key={item.id}/>
           )
         })
       }

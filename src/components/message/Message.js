@@ -1,11 +1,14 @@
+import { useSelector } from 'react-redux'
 import './message.css'
 
-const Message = ({name, message, date, isRobot}) => {
+const Message = ({name, message, date }) => {
+
+    const user = useSelector((state) => state.auth.user)
 
     let messageClassName = 'message_container'
     let positionClassName = 'position'
 
-    if(isRobot) {
+    if(user?.displayName !== name) {
         messageClassName += ' robot'
         positionClassName = ' robot_position'
     }

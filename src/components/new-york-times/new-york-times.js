@@ -24,9 +24,6 @@ const NewYorkTimes = () => {
 
 
     const newsTemplate = () => {
-        console.log(error)
-        console.log(loading)
-        console.log(newsData)
         if(error) {
             return (
                 <>
@@ -67,7 +64,7 @@ const NewYorkTimes = () => {
                     overflowY: 'scroll'
                 }}>
                     <div className="nyt-header">
-                        <NavLink to='/' className="home-icon-link">
+                        <NavLink to='/home' className="home-icon-link">
                             <Button variant="outlined" startIcon={<HomeIcon/>}>Home</Button>
                         </NavLink>
                         <h2 className="chat-list__header">New York Times</h2>

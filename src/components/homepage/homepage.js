@@ -1,9 +1,16 @@
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Box } from "@mui/material"
 import './homepage.css'
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 const Homepage = () => {
+
+    const user = useSelector((state) => {
+       return state.auth.user
+    })
+
     return (
         <Box sx={{ 
             width: '100%',

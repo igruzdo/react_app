@@ -3,18 +3,20 @@ import './inputform.css'
 
 import { Box, Button, TextField} from '@mui/material'
 import MessageIcon from '@mui/icons-material/Message';
+import { useSelector } from 'react-redux';
 
 const InputForm = ({onSendMessage}) => {
 
     const [msgState, setMsgState] = useState({
-        name: '',
         message: ''
     })
 
+    const user = useSelector((state) => state.auth.user)
+
     const sendMessage = (e) => {
         e.preventDefault();
-        if(msgState.name === '' && msgState.message === '') return
-        onSendMessage(msgState)
+        if(msgState.message === '') return
+        onSendMessage({...msgState, name: user.displayName })
     }
 
     const onValueChange = (e) => {
@@ -36,18 +38,6 @@ const InputForm = ({onSendMessage}) => {
             }}
         >
             <h4>Message form</h4>
-                <TextField
-                    id="outlined-name"
-                    label="Name"
-                    name="name"
-                    size="small"
-                    autoFocus
-                    fullWidth
-                    required
-                    value={msgState.name}
-                    helperText="Please enter your name"
-                    onChange={onValueChange}
-                />
                 <TextField
                     id="outlined-message"
                     label="Message"

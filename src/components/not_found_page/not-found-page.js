@@ -1,7 +1,20 @@
 import './not-found-page.css'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const NotFoundPage = () => {
+
+    const navigate = useNavigate()
+
+    const user = useSelector((state) => state.auth.user)
+
+    useEffect(() => {
+        if(!user) {
+            navigate('/')
+        }
+    }, [])
+
     return (
         <>
             <section className="page_404">
@@ -22,7 +35,7 @@ const NotFoundPage = () => {
                     
                     <p>the page you are looking for not avaible!</p>
                     
-                    <NavLink className='menu-link' to='/'>Homepage</NavLink>
+                    <NavLink className='menu-link' to='/home'>Homepage</NavLink>
                 </div>
                     </div>
                     </div>

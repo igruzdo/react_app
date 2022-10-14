@@ -3,30 +3,33 @@ import './chats_list.css'
 import ChatsListItem from "../chats_list_item/chats_list_item";
 import { useState } from 'react';
 import { Button, TextField} from '@mui/material'
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ThemeContext } from '../../context/theme';
 import { ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
+import * as chatsListActions from "../../_redux/actions/actionsTypes/chatListActionsTypes"
+import { addChatWithFirebase, deleteChatWithFirebase, initChatTracking } from "../../_redux/actions/actionsCreators/chatsListActions";
 
 
 
 const ChatsList = () => {
 
+    const navigate = useNavigate()
     const [formState, setFormState] = useState('')
 
-    const chatListRedux = useSelector((state) => state.chats.chats);
+    // const chatListRedux = useSelector((state) => state.chats.chats);
+    const chatListRedux = useSelector((state) => {
+        return state.chats.chats
+    });
+    const user = useSelector((state) => state.auth.user);
     const dispatch = useDispatch()
+
 
     const chats = chatListRedux.map(item => {
         return (
-            <ChatsListItem listItem={item} key={item.id} onDeleteChat={() => dispatch({
-                type: 'deleteChat',
-                payload: {
-                    id: item.id
-                }
-            })}/>
+            <ChatsListItem listItem={{ id: item.chatId, name: item.chatName }} key={item.chatId} onDeleteChat={() => dispatch(deleteChatWithFirebase(item.chatId))}/>
         )
     })
 
@@ -34,16 +37,17 @@ const ChatsList = () => {
 
     const onChangeNameNewChat = (e) => {
         setFormState(e.target.value)
-      }
+    }
+
+    useEffect(() => {
+        dispatch(initChatTracking())
+    }, [])
 
     const onAddChat = () => {
-        dispatch({ 
-            type: 'addChat', 
-            payload: { 
-                name: formState, 
-                id: parseInt(chatListRedux.map(item => item.id).sort((a, b) => b - a)[0] + 1), 
-            }
-        })
+        dispatch(addChatWithFirebase({
+            name: formState, 
+            id: `${Math.floor(Math.random() * 1000)}-${chatListRedux.length || 0}-${Date.now()}`,
+        }))
     }
 
     return (
@@ -64,7 +68,7 @@ const ChatsList = () => {
                     justifyContent: 'space-between'
                 }}>
                     <div className="header__container">
-                        <NavLink to='/' className="home-icon-link">
+                        <NavLink to='/home' className="home-icon-link">
                             <Button variant="outlined" startIcon={<HomeIcon/>}>Home</Button>
                         </NavLink>
                         <h2 className="chat-list__header">Chat list</h2>

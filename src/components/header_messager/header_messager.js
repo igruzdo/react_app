@@ -34,7 +34,7 @@ const HeaderMessager = ({authors, chatName}) => {
 
   return (
     <div className='header'>
-      <NavLink to='/'>
+      <NavLink to='/home'>
         <Button variant="outlined" startIcon={<HomeIcon/>} className="home-icon-link">Home</Button>
       </NavLink>
       <h4 className='chat-name'>{chatName}</h4>

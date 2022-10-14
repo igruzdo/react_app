@@ -7,8 +7,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { Provider } from 'react-redux';
-import { store, persistor } from './_redux/store'
-import { PersistGate } from 'redux-persist/integration/react';
+import { store } from './_redux/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

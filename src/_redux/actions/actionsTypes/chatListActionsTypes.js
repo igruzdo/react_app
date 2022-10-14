@@ -1,0 +1,1 @@
+export const CHANGE_CHATS = "CHANGE_CHATS"
