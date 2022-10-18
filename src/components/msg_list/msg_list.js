@@ -1,5 +1,5 @@
 import './msg_list.css'
-import Message from '../message/message.js';
+import Message from '../message/message';
 
 const MessageList = ({msgList}) => {
 

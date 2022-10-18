@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render message 1`] = `
+<div
+  className=" robot_position"
+>
+  <div
+    className="message_container robot"
+  >
+    <div
+      className="message_header"
+    >
+      <h4
+        className="author"
+      >
+        John
+      </h4>
+      <p
+        className="date"
+      >
+        6576547654
+      </p>
+    </div>
+    <p
+      className="message_txt"
+    >
+      test message
+    </p>
+  </div>
+</div>
+`;
